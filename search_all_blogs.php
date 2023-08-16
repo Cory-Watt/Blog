@@ -22,19 +22,27 @@ include "db_connect.php";
 // Check if a keyword is provided in the GET request. If not, default to an empty string
 $keywordfromform = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 
-// Display a header indicating the keyword. Use htmlspecialchars for security against XSS
-echo "<h2>Show all blogs with the word " . htmlspecialchars($keywordfromform) . "</h2>";
+if ($keywordfromform) {
+    // If keyword is provided
+    echo "<h2>Show all blogs with the word " . htmlspecialchars($keywordfromform) . "</h2>";
 
-// SQL statement to retrieve blogs. This statement joins two tables and filters blogs based on the keyword
-$stmt = $conn->prepare("SELECT BlogID, Blog_question, Blog_answer, Blogs_table.user_id, user_name 
-                        FROM Blogs_table 
-                        JOIN users ON users.user_id = Blogs_table.user_id 
-                        WHERE Blog_subject LIKE ?");
+    // SQL statement to retrieve blogs based on keyword
+    $stmt = $conn->prepare("SELECT BlogID, Blog_subject, Blog_body, Blogs_table.user_id, user_name 
+                            FROM Blogs_table 
+                            JOIN users ON users.user_id = Blogs_table.user_id 
+                            WHERE Blog_subject LIKE ?");
 
-// Add wildcard characters to the keyword for a LIKE search
-$searchLike = "%" . $keywordfromform . "%";
-// Bind the modified keyword to the prepared SQL statement
-$stmt->bindParam(1, $searchLike);
+    $searchLike = "%" . $keywordfromform . "%";
+    $stmt->bindParam(1, $searchLike);
+} else {
+    // If no keyword, show all blogs
+    echo "<h2>Show all blogs</h2>";
+
+    // SQL statement to retrieve all blogs
+    $stmt = $conn->prepare("SELECT BlogID, Blog_subject, Blog_body, Blogs_table.user_id, user_name 
+                            FROM Blogs_table 
+                            JOIN users ON users.user_id = Blogs_table.user_id");
+}
 
 // Execute the prepared SQL statement
 $stmt->execute();
