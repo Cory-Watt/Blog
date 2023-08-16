@@ -1,35 +1,19 @@
--- phpMyAdmin SQL Dump
--- version 4.8.5
--- https://www.phpmyadmin.net/
---
-
--- this is a two table solution.  Blogs and Users tables.  Used to track logins and ownership of blogs.
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
---
--- Database: `BlogsDB`
---
+-- Database: [BlogsDB]
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `Blogs_table`
---
+-- Table structure for table [Blogs_table]
+CREATE TABLE [Blogs_table] (
+  [BlogID] int NOT NULL IDENTITY(1,1),
+  [Blog_subject] varchar(500) NOT NULL,
+  [Blog_body] varchar(MAX) NOT NULL,
+  [user_id] char(100) NOT NULL
+);
 
-CREATE TABLE `Blogs_table` (
-  `BlogID` int(11) NOT NULL,
-  `Blog_subject` varchar(500) NOT NULL,
-  `Blog_body` varchar(500) NOT NULL,
-  `user_id` char(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- Dumping data for table [Blogs_table]
+SET IDENTITY_INSERT [Blogs_table] ON;
 
---
--- Dumping data for table `Blogs_table`
---
-
-INSERT INTO `Blogs_table` (`BlogID`, `Blog_subject`, `Blog_body`, `user_id`) VALUES
+INSERT INTO [Blogs_table] ([BlogID], [Blog_subject], [Blog_body], [user_id]) VALUES
 (1, 'Electrical and Fire Alarm', 'Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', '13'),
 (3, 'Roofing (Metal)', 'Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', '15'),
 (4, 'Fire Protection', 'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.', '16'),
@@ -41,25 +25,23 @@ INSERT INTO `Blogs_table` (`BlogID`, `Blog_subject`, `Blog_body`, `user_id`) VAL
 (18, 'Masonry', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis.', '16'),
 (19, 'Waterproofing & Caulking', 'In hac habitasse platea dictumst.', '23');
 
+SET IDENTITY_INSERT [Blogs_table] OFF;
+
 -- --------------------------------------------------------
 
---
--- Table structure for table `users`
---
+-- Table structure for table [users]
+CREATE TABLE [users] (
+  [user_id] int NOT NULL IDENTITY(1,1),
+  [user_name] text NOT NULL,
+  [password] text NOT NULL,
+  [email_address] text,
+  [admin_role] tinyint DEFAULT NULL
+);
 
-CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
-  `user_name` text NOT NULL,
-  `password` text NOT NULL,
-  `email_address` text,
-  `admin_role` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- Dumping data for table [users]
+SET IDENTITY_INSERT [users] ON;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `user_name`, `password`, `email_address`, `admin_role`) VALUES
+INSERT INTO [users] ([user_id], [user_name], [password], [email_address], [admin_role]) VALUES
 (13, 'ken', 'password', 'fake@fakemail.com', 1),
 (15, 'bob', 'password', 'fake@fakemail.com', 0),
 (16, 'jim', 'password', 'fake@fakemail.com', 0),
@@ -68,34 +50,12 @@ INSERT INTO `users` (`user_id`, `user_name`, `password`, `email_address`, `admin
 (19, 'lonny', 'password', 'fake@fakemail.com', 0),
 (23, 'jeffrey', 'password', 'fake@fakemail.com', 0);
 
---
+SET IDENTITY_INSERT [users] OFF;
+
 -- Indexes for dumped tables
---
 
---
--- Indexes for table `Blogs_table`
---
-ALTER TABLE `Blogs_table`
-  ADD PRIMARY KEY (`BlogID`);
+-- Indexes for table [Blogs_table]
+ALTER TABLE [Blogs_table] ADD PRIMARY KEY ([BlogID]);
 
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `Blogs_table`
---
-ALTER TABLE `Blogs_table`
-  MODIFY `BlogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+-- Indexes for table [users]
+ALTER TABLE [users] ADD PRIMARY KEY ([user_id]);
