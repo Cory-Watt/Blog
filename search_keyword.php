@@ -36,7 +36,7 @@ if(isset($_GET['keyword'])) {
     echo "<h2>Show all blogs with the word " . $keywordfromform . "</h2>";
 
     // SQL query to fetch blogs that match the keyword
-    $stmt = $conn->prepare("SELECT BlogID, Blog_question, Blog_body, Blogs_table.user_id, user_name 
+    $stmt = $conn->prepare("SELECT BlogID, Blog_subject, Blog_body, Blogs_table.user_id, user_name 
                             FROM Blogs_table 
                             JOIN users ON users.user_id = Blogs_table.user_id 
                             WHERE Blog_Subject LIKE ?");
