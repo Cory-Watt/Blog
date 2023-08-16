@@ -39,7 +39,7 @@ if(isset($_GET['keyword'])) {
     $stmt = $conn->prepare("SELECT BlogID, Blog_subject, Blog_body, Blogs_table.user_id, user_name 
                             FROM Blogs_table 
                             JOIN users ON users.user_id = Blogs_table.user_id 
-                            WHERE Blog_Subject LIKE ?");
+                            WHERE Blog_subject LIKE ?");
     $searchLike = "%" . $keywordfromform . "%";
     $stmt->bindParam(1, $searchLike);
     $stmt->execute();
