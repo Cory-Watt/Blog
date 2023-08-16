@@ -3,43 +3,43 @@
 -- https://www.phpmyadmin.net/
 --
 
--- this is a two table solution.  Jokes and Users tables.  Used to track logins and ownership of jokes.
+-- this is a two table solution.  Blogs and Users tables.  Used to track logins and ownership of blogs.
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `JokesDB`
+-- Database: `BlogsDB`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Jokes_table`
+-- Table structure for table `Blogs_table`
 --
 
-CREATE TABLE `Jokes_table` (
-  `JokeID` int(11) NOT NULL,
-  `Joke_question` varchar(500) NOT NULL,
-  `Joke_answer` varchar(500) NOT NULL,
+CREATE TABLE `Blogs_table` (
+  `BlogID` int(11) NOT NULL,
+  `Blog_subject` varchar(500) NOT NULL,
+  `Blog_body` varchar(500) NOT NULL,
   `user_id` char(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Jokes_table`
+-- Dumping data for table `Blogs_table`
 --
 
-INSERT INTO `Jokes_table` (`JokeID`, `Joke_question`, `Joke_answer`, `user_id`) VALUES
-(1, 'What time is it when an elephant sits on your fence?', 'It\'s time to buy a new fence.', '13'),
-(3, 'Why did the chicken cross the road?', 'To get to the other side.', '15'),
-(4, 'What did the mother buffalo say to her son when she dropped him off at school?', 'Bison', '16'),
-(5, 'Why did the chicken cross the playground?', 'To get to the other slide.', '13'),
-(6, 'What happens to a frog\'s car when it breaks down?', 'It gets toad.', '15'),
-(7, 'How does a frog start his car when the battery is dead?', 'He gets a jump start.', '16'),
-(10, 'what to hear a joke?', 'Your life', '13'),
-(17, 'Why can\'t you trust an atom?', 'They make up everything.', '15'),
-(18, 'My sister bet me $100 that I couldn\'t make a car out of spagetti', 'You should have seen the look on her face when I drove pasta.', '16'),
-(19, 'Where do animals go when their tail falls off?', 'The retail store.', '23');
+INSERT INTO `Blogs_table` (`BlogID`, `Blog_subject`, `Blog_body`, `user_id`) VALUES
+(1, 'Electrical and Fire Alarm', 'Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', '13'),
+(3, 'Roofing (Metal)', 'Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', '15'),
+(4, 'Fire Protection', 'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.', '16'),
+(5, 'Waterproofing & Caulking', 'Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc.', '13'),
+(6, 'Masonry', 'In hac habitasse platea dictumst.', '15'),
+(7, 'Epoxy Flooring', 'Etiam faucibus cursus urna. Ut tellus.', '16'),
+(10, 'Structural & Misc Steel Erection', 'Aliquam quis turpis eget elit sodales scelerisque.', '13'),
+(17, 'Soft Flooring and Base', 'Curabitur gravida nisi at nibh.', '15'),
+(18, 'Masonry', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis.', '16'),
+(19, 'Waterproofing & Caulking', 'In hac habitasse platea dictumst.', '23');
 
 -- --------------------------------------------------------
 
@@ -60,23 +60,23 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `password`, `email_address`, `admin_role`) VALUES
-(13, 'bill', 'password', 'bill.gates@microsoft.com', 1),
-(15, 'kim', 'password', ' kim.ill@north.ko', 0),
-(16, '   don   ', 'don', '   don.trump@whitehouse.gov   ', 0),
-(17, 'bob', ' bob ', ' bob@microsoft.com', 0),
-(18, ' melinda ', 'm', '  melinda.gates@microsoft.com ', 0),
-(19, 'jim', 'jim', 'jim@msn.com', 0),
-(23, 'obama', 'password', 'barak@whitehouse.gov', 0);
+(13, 'ken', 'password', 'fake@fakemail.com', 1),
+(15, 'bob', 'password', 'fake@fakemail.com', 0),
+(16, 'jim', 'password', 'fake@fakemail.com', 0),
+(17, 'cory', 'password', 'fake@fakemail.com', 0),
+(18, 'danny', 'password', 'fake@fakemail.com', 0),
+(19, 'lonny', 'password', 'fake@fakemail.com', 0),
+(23, 'jeffrey', 'password', 'fake@fakemail.com', 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Jokes_table`
+-- Indexes for table `Blogs_table`
 --
-ALTER TABLE `Jokes_table`
-  ADD PRIMARY KEY (`JokeID`);
+ALTER TABLE `Blogs_table`
+  ADD PRIMARY KEY (`BlogID`);
 
 --
 -- Indexes for table `users`
@@ -89,10 +89,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `Jokes_table`
+-- AUTO_INCREMENT for table `Blogs_table`
 --
-ALTER TABLE `Jokes_table`
-  MODIFY `JokeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+ALTER TABLE `Blogs_table`
+  MODIFY `BlogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
