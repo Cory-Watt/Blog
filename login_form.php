@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <a href='register_new_user.php'>Register Account</a>
+        <a href='register_new_user.php'>Create Account</a>
 
     </fieldset>
 </form>
