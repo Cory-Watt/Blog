@@ -54,10 +54,6 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <a href='register_new_user.php'>Create Account</a>
-            </div>
-
         </fieldset>
     </form>
 

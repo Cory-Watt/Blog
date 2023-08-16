@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -13,19 +12,23 @@
 
 <body>
 
-<h1>Blogs Page</h1>
-<a href="search_all_blogs.php">Show all blogs</a>
-<br>
-
 <?php
-// PHP settings to display all errors for debugging 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+// Start session
+session_start();
+
+// Check if user_name session variable is set to ensure only logged-in users can access this page.
+if (!isset($_SESSION['user_name']) || !$_SESSION['user_name']) {
+    echo "Only logged in users may access this page.  Click <a href='login_form.php'>here</a> to login.<br>";
+    exit; // Exit script if user is not logged in
+}
 
 // Include the database connection file
 include "db_connect.php"; 
 ?>
+
+<h1>Blogs Page</h1>
+<a href="search_all_blogs.php">Show all blogs</a>
+<br>
 
 <!-- Form for searching blogs by keyword -->
 <form class="form-horizontal" action="search_keyword.php" method="get">
@@ -71,7 +74,7 @@ include "db_connect.php";
         <div class="form-group">
             <label class="col-md-4 control-label" for="blogbody">Blog Body</label>
             <div class="col-md-5">
-                <input id="blogbody" type="text" name="blogbody" placeholder="blog body" class="form-control input-md" required="">
+                <textarea id="blogbody" name="blogbody" placeholder="blog body" class="form-control" rows="5" required=""></textarea>
                 <p class="help-block">Enter the body of your blog</p>
             </div>
         </div>

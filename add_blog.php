@@ -1,12 +1,11 @@
 <?php
-// Start or continue the existing session
+// Start session
 session_start();
 
 // Check if user_name session variable is set to ensure only logged-in users can access this page.
 if (!isset($_SESSION['user_name']) || !$_SESSION['user_name']) {
-    echo "Only logged in users may access this page.  Click <a href='login_form.php'>here</a> to login.<br>";
-    // exit script if user is not logged in
-    exit;
+    echo "Only logged in users may access this page. Click <a href='login_form.php'>here</a> to login.<br>";
+    exit;  // Exit script if user is not logged in
 }
 
 // Ensure this script is only accessible via a POST request
@@ -17,11 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 // Include database connection script
 include "db_connect.php";
 
-// Ensure POST variables are set - If not, default them to empty strings.
+// Ensure POST variables are set. If not, default them to empty strings.
 $new_blog_subject = isset($_POST['newblog']) ? $_POST['newblog'] : '';
 $new_blog_body = isset($_POST['blogbody']) ? $_POST['blogbody'] : '';
-// Get the user ID from the session
-$userid = $_SESSION['userid'];
+$userid = $_SESSION['userid'];  // Get the user ID from the session
 
 // Display an informational message to show which blog is being added safely using htmlspecialchars
 echo "<h2>Trying to add a new blog: " . htmlspecialchars($new_blog_subject) . " and " . htmlspecialchars($new_blog_body) . "</h2>";
