@@ -42,6 +42,9 @@
                 <button id="submit" name="submit" class="btn btn-primary">Login</button>
             </div>
         </div>
+
+        <a href='register_new_user.php'>Register Account</a>
+
     </fieldset>
 </form>
 
