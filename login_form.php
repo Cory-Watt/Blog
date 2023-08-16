@@ -39,11 +39,18 @@
                 </div>
             </div>
 
-            <!-- Login button -->
             <div class="form-group">
                 <label for="submit" class="col-md-4 control-label"></label>
                 <div class="col-md-4">
                     <button id="submit" name="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+
+            <!-- Login button -->
+            <div class="form-group">
+                <label for="submit" class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <a href='register_new_user.php'>Create Account</a>
                 </div>
             </div>
 
