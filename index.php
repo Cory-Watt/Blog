@@ -16,11 +16,13 @@
 // Start session
 session_start();
 
-// Check if user_name session variable is set to ensure only logged-in users can access this page.
+// Check if user_name session variable is set to ensure only logged-in users can add a blog.
 if (!isset($_SESSION['user_name']) || !$_SESSION['user_name']) {
-    echo "Only logged in users may access this page.  Click <a href='login_form.php'>here</a> to login.<br>";
+    echo "Only logged in users may add a blog. Click <a href='login_form.php'>here</a> to login.<br>";
     exit; // Exit script if user is not logged in
 }
+
+
 
 // Include the database connection file
 include "db_connect.php"; 
